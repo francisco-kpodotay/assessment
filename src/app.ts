@@ -3,6 +3,7 @@ import { list } from './commands';
 import { Store } from './stores/store.type';
 import { RecipeType } from './recipe';
 
+
 type Command = (store: Store<RecipeType[]>, args: string[]) => Promise<void>
 
 export async function createApp(store: Store<RecipeType[]>, args: string[], ) {
@@ -16,6 +17,7 @@ export async function createApp(store: Store<RecipeType[]>, args: string[], ) {
     const commandFunction = commands[command] 
     await commandFunction(store, restArgs);
   } else {
-    throw new AppError(`Unknown command: ${command}`);
+    console.error(`Error: Unknown command: ${command}`)
+    //throw new AppError(`Unknown command: ${command}`);
   }
 }
